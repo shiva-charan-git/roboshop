@@ -47,4 +47,4 @@ print_head "install mongo clinet"
 yum install mongodb-org-shell -y  &>>${log_file}
 
 print_head "load schema"
-mongo --host 50.19.133.58 </app/schema/catalogue.js  &>>${log_file}
+mongo --host mongodb-dev.devsig90.online </app/schema/catalogue.js  &>>${log_file}
