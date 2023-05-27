@@ -44,7 +44,7 @@ cp ${code_dir}/configs/catalogue.service  /etc/systemd/system/catalogue.service 
 status_check $?
 
 print_head "reload systemd"
-systemctl daemon-reloadb  &>>${log_file}
+systemctl daemon-reload  &>>${log_file}
 status_check $?
 
 print_head "ebnabling catalogue service"
