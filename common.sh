@@ -54,8 +54,8 @@ schema_setup() {
     status_check $?
 
     print_head "load schema"
-    mysql -h mysql-dev.devsig90.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql 
-    status_check $?
+    mysql -h mysql-dev.devsig90.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>${log_file}
+    status_check $? 
 }
 
 app_prereq_setup() {
