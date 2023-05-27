@@ -1,3 +1,5 @@
+source common.sh
+b
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
 yum install nodejs -y
@@ -16,14 +18,14 @@ cd /app
 
 npm install
 
-cp configs/catalogue.service  /etc/systemd/system/catalogue.service
+cp ${code_dir}/configs/catalogue.service  /etc/systemd/system/catalogue.service
 
 systemctl daemon-reloadb
 
 systemctl enable catalogue 
 systemctl start catalogue
 
-cp configs/mongodb.repo /etc/yum.repos.d/mongo.repo
+cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongo.repo
 
 yum install mongodb-org-shell -y
 
