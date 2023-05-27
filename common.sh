@@ -119,7 +119,7 @@ java() {
   
   app_prereq_setup
   
-  print_head "download bdependency & packages"
+  print_head "download dependency & packages"
   mvn clean package   &>>${log_file}
   mv target/${component}-1.0.jar ${component}.jar  &>>${log_file}
   status_check $?
