@@ -11,7 +11,7 @@ systemctl enable mongod  &>>${log_file}
 
 
 print_head "Update listen address from 127.0.0.1 to 0.0.0.0 in /etc/mongod.conf"
-sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf &>>${log_file}
 
 print_head "start Mongodb"  
 systemctl restart mongod &>>${log_file}
