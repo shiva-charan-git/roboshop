@@ -12,7 +12,7 @@ curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.z
 
 print_head "Extracting downloaded content"
 cd /usr/share/nginx/html  &>>${log_file}
-unzip /tmp/frontend.zipb  &>>${log_file}
+unzip /tmp/frontend.zip  &>>${log_file}
 
 print_head "copying Nginx config for roboshop"
 cp ${code_dir}/config/nginx-roboshop.conf /etc/nginx/default.d/roboshop.conf &>>${log_file}
