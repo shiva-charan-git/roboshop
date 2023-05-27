@@ -53,7 +53,7 @@ status_check $?
 
 print_head "starting catalogue service"
 systemctl restart catalogue  &>>${log_file}
-status_check $?b
+status_check $?
 
 print_head "Copy mongodb repo file"
 cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongo.repo  &>>${log_file}
