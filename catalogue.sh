@@ -1,32 +1,50 @@
 source common.sh
-b
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
-yum install nodejs -y
+print_head "configure  nodejs repo"
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log_file}
 
-useradd roboshop
+print_head "nodejs installation"
+yum install nodejs -y  &>>${log_file}
 
-mkdir /app
 
-rm -rf /app/*
+print_head "create user roboshop"
+useradd roboshop  &>>${log_file}
 
-curl -L -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip 
-cd /app 
-unzip /tmp/catalogue.zip
+print_head "Create Appliaction Dir"
+mkdir /app  &>>${log_file}
 
-cd /app
 
-npm install
+print_head "Delete old content"
+rm -rf /app/*  &>>${log_file}
+ 
+print_head "download app content"
+curl -L -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip  &>>${log_file}
+cd /app   
 
-cp ${code_dir}/configs/catalogue.service  /etc/systemd/system/catalogue.service
+print_head "Extracting app content"
+unzip /tmp/catalogue.zip  &>>${log_file}
 
-systemctl daemon-reloadb
+print_head "Installing Nodejs Dependency"
+npm install   &>>${log_file}
 
-systemctl enable catalogue 
-systemctl start catalogue
 
-cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongo.repo
+print_head "Copying system File"
+cp ${code_dir}/configs/catalogue.service  /etc/systemd/system/catalogue.service  &>>${log_file}
 
-yum install mongodb-org-shell -y
+print_head "reload systemd"
+systemctl daemon-reloadb  &>>${log_file}
 
-mongo --host mongodb-dev.devsig90.online </app/schema/catalogue.js
+print_head "ebnabling catalogue service"
+systemctl enable catalogue &>>${log_file}
+
+print_head "starting catalogue service"
+systemctl restart catalogue  &>>${log_file}
+
+print_head "Copy mongodb repo file"
+cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongo.repo  &>>${log_file}
+
+print_head "install mongo clinet"
+yum install mongodb-org-shell -y  &>>${log_file}
+
+print_head "load schema"
+mongo --host mongodb-dev.devsig90.online </app/schema/catalogue.js  &>>${log_file}
