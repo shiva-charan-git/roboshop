@@ -35,7 +35,7 @@ systemd_setup() {
  status_check $?
 }
 
-schema_setup() {
+Schema_Type() {
   if [ "${schema_type}" == "mongo" ]; then
     print_head "Copy MongoDB Repo File"
     cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
@@ -104,7 +104,7 @@ print_head "Installing Nodejs Dependency"
 npm install   &>>${log_file}
 status_check $?
 
-schema_setup
+Schema_Type
 
 systemd_setup
 
@@ -126,7 +126,7 @@ java() {
   
 
   # schema setup function
-  schema_setup
+  Schema_Type
   
   #b systemd function
   systemd_setup
