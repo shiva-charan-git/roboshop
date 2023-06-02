@@ -37,25 +37,24 @@ systemd_setup() {
 
 schema_setup() {
   if [ "${schema_type}" == "mongo" ]; then
-    print_head "Copy mongodb repo file"
-    cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongo.repo  &>>${log_file}
+    print_head "Copy MongoDB Repo File"
+    cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
     status_check $?
 
-    print_head "install mongo clinet"
-    yum install mongodb-org-shell -y  &>>${log_file}
+    print_head "Install Mongo Client"
+    yum install mongodb-org-shell -y &>>${log_file}
     status_check $?
 
-    print_head "load schema"
-    mongo --host mongodb-dev.devsig90.online </app/schema/${component}.js  &>>${log_file}
+    print_head "Load Schema"
+    mongo --host mongodb-dev.devopsb71.online </app/schema/${component}.js &>>${log_file}
     status_check $?
-    
   elif [ "${schema_type}" == "mysql" ]; then
-    print_head "install MySQL Client"
-    yum install mysql -y  &>>${log_file}
+    print_head "Install MySQL Client"
+    yum install mysql -y &>>${log_file}
     status_check $?
 
-    print_head "load schema"
-    mysql -h mysql-dev.devsig90.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>${log_file}
+    print_head "Load Schema"
+    mysql -h mysql-dev.devopsb71.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>${log_file}
     status_check $?
   fi
 }
