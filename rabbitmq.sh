@@ -16,7 +16,7 @@ curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/sc
 status_check $?
 
 print_head "Install Erlang & RabbitMQ"
-yum install rabbitmq-server rlang -y  &>>${log_file}
+yum install rabbitmq-server Erlang -y  &>>${log_file}
 status_check $?
 
 print_head "Enable RabbitMQ Service"
