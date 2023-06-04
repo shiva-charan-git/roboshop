@@ -54,7 +54,7 @@ elif  [ "${schema_type}" == "mysql" ]; then
     status_check $?
 
     print_head "Load Schema"
-    mysql -h mysql-dev.devopsb71.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>${log_file}
+    mysql -h 44.202.84.43 -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>${log_file}
     status_check $?
 fi
 }
