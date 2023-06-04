@@ -35,7 +35,7 @@ systemd_setup() {
  status_check $?
 }
 
-Schema_Type() {
+schema_type() {
 if  [ "${schema_type}" == "mongo" ]; then
     print_head "Copy MongoDB Repo File"
     cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
@@ -48,7 +48,7 @@ if  [ "${schema_type}" == "mongo" ]; then
     print_head "Load Schema"
     mongo --host mongodb-dev.devopsb71.online </app/schema/${component}.js &>>${log_file}
     status_check $?
-elif [ "${schema_type}" == "mysql" ]; then
+elif  [ "${schema_type}" == "mysql" ]; then
     print_head "Install MySQL Client"
     yum install mysql -y &>>${log_file}
     status_check $?
@@ -104,7 +104,7 @@ print_head "Installing Nodejs Dependency"
 npm install   &>>${log_file}
 status_check $?
 
-Schema_Type
+schema_type
 
 systemd_setup
 
@@ -126,7 +126,7 @@ java() {
   
 
   # schema setup function
-  Schema_Type
+  schema_type
   
   #b systemd function
   systemd_setup
