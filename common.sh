@@ -46,7 +46,7 @@ if  [ "${schema_type}" == "mongo" ]; then
     status_check $?
 
     print_head "Load Schema"
-    mongo --host 54.175.6.91 </app/schema/${component}.js &>>${log_file}
+    mongo --host mongodb-dev.devsig90.online </app/schema/${component}.js &>>${log_file}
     status_check $?
 elif  [ "${schema_type}" == "mysql" ]; then
     print_head "Install MySQL Client"
@@ -54,7 +54,7 @@ elif  [ "${schema_type}" == "mysql" ]; then
     status_check $?
 
     print_head "Load Schema"
-    mysql -h 44.202.84.43 -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>${log_file}
+    mysql -h mysql-dev.devsig90.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>${log_file}
     status_check $?
 fi
 }
