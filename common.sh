@@ -46,7 +46,7 @@ if  [ "${schema_type}" == "mongo" ]; then
     status_check $?
 
     print_head "Load Schema"
-    mongo --host mongodb-dev.devopsb71.online </app/schema/${component}.js &>>${log_file}
+    mongo --host 54.175.6.91 </app/schema/${component}.js &>>${log_file}
     status_check $?
 elif  [ "${schema_type}" == "mysql" ]; then
     print_head "Install MySQL Client"
